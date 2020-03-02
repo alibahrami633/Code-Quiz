@@ -11,6 +11,13 @@ $("#start-btn").on("click", function() {
     $("#questions-window").css("display", "block"); 
     
     // question window content initaition
-    $(".question-text").html("<p>" + quiz[0].question + "</p>");
+    $(".question-text").html("<p>" + quiz[0].question + "</p>"); // adding the question
+
+    // adding answers
+    for(var i = 0; i < quiz[0].answers.length; i++) {
+        var j = i+1;
+        $(".answers-list").append('<li class="list-group-item"><input id="choice' + j + '" type="radio" name="answers" value="' + j + '"><label for="choice' + j + '">' + quiz[0].answers[i] + '</label></li>');
+    }
 });
+
 
