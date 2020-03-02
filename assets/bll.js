@@ -1,23 +1,35 @@
-var quiz = [
-    {question: "What is HTML?", answers: ["Hyper Text Multiple Language", "Hyper Text Makeup Language", "Hyper Text Markup Language", "Hyper Text Madeup Language"], correct: 2},
-    {question: "Question 2 text", answers: ["answer 1", "answer2", "answer3", "answer4"], correct: 3},
-    {question: "Question 3 text", answers: ["answer 1", "answer2", "answer3", "answer4"], correct: 1}
-];
-
 // hides the start window - starting the test
 $("#start-btn").on("click", function() {
     // goes to the test
     $("#start-window").css("display", "none");
     $("#questions-window").css("display", "block"); 
     
-    // question window content initaition
-    $(".question-text").html("<p>" + quiz[0].question + "</p>"); // adding the question
-
-    // adding answers
-    for(var i = 0; i < quiz[0].answers.length; i++) {
-        var j = i+1;
-        $(".answers-list").append('<li class="list-group-item"><input id="choice' + j + '" type="radio" name="answers" value="' + j + '"><label for="choice' + j + '">' + quiz[0].answers[i] + '</label></li>');
-    }
+    createQuestions();
 });
+
+function createQuestions() {
+    // quiz content data initiation
+    var quiz = [
+        {question: "What is HTML?", answers: ["Hyper Text Multiple Language", "Hyper Text Makeup Language", "Hyper Text Markup Language", "Hyper Text Madeup Language"], correct: 2},
+        {question: "Question 2 text", answers: ["answer11", "answer12", "answer13", "answer14"], correct: 3},
+        {question: "Question 3 text", answers: ["answer21", "answer22", "answer23", "answer24"], correct: 1}
+    ];
+
+    // question window content initaition
+    for(var i = 0; i < quiz.length; i++) {
+        var currentQuestionNumber = i + 1;
+        $("#questions-window").append('<section class="col-sm"><article class="row card"><div class="card-header">Question' + currentQuestionNumber +'</div><div class="card-body question-text"></div><div class="answer-text text-left"><div class="card"><ul id="answers-list'+ currentQuestionNumber +'" class="list-group list-group-flush"></ul></div></div><div class="card-footer"><button id="submit" type="button" class="btn btn-primary" value="submit">Submit the Answer</button></div></article></section>');
+        addAnswers(quiz[i], currentQuestionNumber);      
+    }    
+}
+
+// adding answers
+function addAnswers(currentQ, currentQuestionNumber) {    
+    for(var i = 0; i < currentQ.answers.length; i++) {
+        var k = i + 1;
+        //console.log(currentQ.answers[i] + " => " + currentQuestionNumber);
+        $("#answers-list" + currentQuestionNumber).append('<li class="list-group-item"><input id="choice' + k + '" type="radio" name="answers" value="' + k + '"><label for="choice' + k + '">' + currentQ.answers[i] + '</label></li>');
+    }
+}
 
 
