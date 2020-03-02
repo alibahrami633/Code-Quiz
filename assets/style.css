@@ -1,6 +1,28 @@
 body {
     padding-top: 1em;
 }
-#questions-window {
-    /* display: none; */
+
+.answer-text {
+    margin-bottom: 5px;
+    padding: 5px;
 }
+
+label {
+    padding-left: 10px;
+    margin: 0px;
+}
+
+/* initialization */
+#start-window {
+    display: none;
+}
+
+.question-text {
+    font-weight: bold;
+}
+
+/* initialization */
+#questions-window {
+    display: block;
+}
+

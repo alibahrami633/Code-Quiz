@@ -1,12 +1,16 @@
 <!DOCTYPE html>
 <html lang="en-us">
     <head>
+        <title>Code Quiz</title>
+
         <meta charset="UTF8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="viewport" content="width=device-width, initial-scale=1">        
 
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
         <link rel="stylesheet" type="text/css" href="assets/style.css">
-        <title>Code Quiz</title>
+
+        <script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
+        
     </head>
     <body>
         <main class="container align-middle">
@@ -23,13 +27,55 @@
                             </p>
                         </div>
                         <div class="card-footer">
-                            <button type="button" class="btn btn-secondary" value="start">Start the Challenge!</button>
+                            <button id="start-btn" type="button" class="btn btn-secondary" value="start">Start the Challenge!</button>
                         </div>
                     </article>
                 </section>
             </section>
-            <section id="questions-window" class="row">
-
+            <section id="questions-window" class="row text-center">
+                <section class="col-sm">
+                    <article class="row card">
+                        <div class="card-header">Question 1</div>
+                        <div class="card-body question-text">
+                            <p>
+                                What is HTML?
+                            </p>
+                        </div>
+                        <div class="answer-text text-left">
+                            <div class="card">
+                                <ul class="list-group list-group-flush">
+                                  <li class="list-group-item">
+                                      <input id="choice1" type="radio" name="answers" value="1">
+                                      <label for="choice1">
+                                          Hyper Text Markup Language
+                                      </label>
+                                  </li>    
+                                  <li class="list-group-item">
+                                    <input id="choice2" type="radio" name="answers" value="2">
+                                    <label for="choice2">
+                                        Hyper Text Markup Language
+                                    </label>
+                                </li>
+                                <li class="list-group-item">
+                                    <input id="choice3" type="radio" name="answers" value="3">
+                                    <label for="choice3">
+                                        Hyper Text Markup Language
+                                    </label>
+                                </li>
+                                <li class="list-group-item">
+                                    <input id="choice4" type="radio" name="answers" value="4">
+                                    <label for="choice4">
+                                        Hyper Text Markup Language
+                                    </label>
+                                </li>                               
+                                </ul>
+                              </div>                            
+                        </div>
+                        <div class="card-footer">
+                            <button id="submit" type="button" class="btn btn-primary" value="submit">Submit the Answer</button>
+                        </div>
+                    </article>
+                </section>
             </section>
         </main>
     </body>
