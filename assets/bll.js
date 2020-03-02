@@ -15,17 +15,35 @@ function createQuestionCards() {
         {question: "Question 3 text", answers: ["answer21", "answer22", "answer23", "answer24"], correct: 1}
     ];
 
-    addQuestions(quiz);   
+    // adding questions and answers with no display
+    addQuestions(quiz);
+
+
+    // first question initiation
+    if( $("#card1") ) {
+        $("#card1").css("display", "block");
+        
+        var correctAnswer = quiz[0].correct;
+        $("#submit1").on("click", submitAnswer(correctAnswer)); // continue the code from here ...
+    }
+    else 
+        console.log("err: empty question bank");
 }
 
-// question window content initaition
+function submitAnswer(correctAnswer) {
+    if( $("#choice" + correctAnswer).is(":checked")) {
+        alert("correct");
+    } else alert("wrong");
+}
+
+// question window content initiation
 function addQuestions(quiz) {
     for(var i = 0; i < quiz.length; i++) {
         var currentQuestionNumber = i + 1;
         
-        $("#questions-window").append('<section class="col-sm"><article class="row card"><div class="card-header">Question' + currentQuestionNumber +'</div><div class="card-body question-text"></div><div class="answer-text text-left"><div class="card"><ul id="answers-list'+ currentQuestionNumber +'" class="list-group list-group-flush"></ul></div></div><div class="card-footer"><button id="submit" type="button" class="btn btn-primary" value="submit">Submit the Answer</button></div></article></section>');
+        $("#questions-window").append('<section id="card' + currentQuestionNumber +'" class="col-sm top-margin hidden"><article class="row card"><div class="card-header">Question' + currentQuestionNumber +'</div><div class="card-body question-text"></div><div class="answer-text text-left"><div class="card"><ul id="answers-list'+ currentQuestionNumber +'" class="list-group list-group-flush"></ul></div></div><div class="card-footer"><button id="submit'+ currentQuestionNumber +'" type="button" class="btn btn-primary submit">Submit the Answer</button></div></article></section>');
 
-        addAnswers(quiz[i], currentQuestionNumber);      
+        addAnswers(quiz[i], currentQuestionNumber);        
     } 
 }
 
@@ -33,7 +51,7 @@ function addQuestions(quiz) {
 function addAnswers(currentQ, currentQuestionNumber) {    
     for(var i = 0; i < currentQ.answers.length; i++) {
         var k = i + 1;
-        //console.log(currentQ.answers[i] + " => " + currentQuestionNumber);
+        
         $("#answers-list" + currentQuestionNumber).append('<li class="list-group-item"><input id="choice' + k + '" type="radio" name="answers" value="' + k + '"><label for="choice' + k + '">' + currentQ.answers[i] + '</label></li>');
     }
 }

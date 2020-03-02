@@ -7,6 +7,10 @@ body {
     padding-top: 1em;
 }
 
+.hidden {
+    display: none;
+}
+
 label {
     padding-left: 10px;
     margin: 0px;
@@ -26,3 +30,6 @@ label {
     display: none;
 }
 
+.top-margin {
+    margin-top: 10px;
+}
