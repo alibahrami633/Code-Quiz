@@ -19,13 +19,17 @@ $("#start-btn").on("click", function() {
         $(".submit").on("click", function(){
             var chosen;
             $("input[name='answers0']").each(function() {
-                if(this.checked) chosen = this.value;                    
+                if(this.checked) {
+                    chosen = this.value;
+                }
             });
-            if(chosen == correctAnswer) 
+            if(chosen == correctAnswer) {
                 // alert("Correct");
                 nextCard();
-            else 
+            }
+            else {
                 alert("incorrect");
+            }
         }); // continue the code from here ...
     }
     else 
