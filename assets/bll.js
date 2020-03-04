@@ -96,7 +96,7 @@ function addAnswers(currentQ, ind, currentQuestionNumber) {
     for(var i = 0; i < currentQ.answers.length; i++) {
         var k = i + 1;
         
-        $("#answers-list" + currentQuestionNumber).append('<li class="list-group-item"><input id="choice' + k + '" type="radio" name="answers'+ ind +'" value="' + k + '"><label for="choice' + 
+        $("#answers-list" + currentQuestionNumber).append('<li class="list-group-item"><input id="choice' + ind + k + '" type="radio" name="answers'+ ind +'" value="' + k + '"><label for="choice' + ind +
         k + '">' + currentQ.answers[i] + '</label></li>');
     }
 }
