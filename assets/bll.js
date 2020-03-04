@@ -8,36 +8,66 @@ $("#start-btn").on("click", function() {
 
     // adding questions and answers with no display
     var quiz = createQuestionCards();
-    addQuestions(quiz);
-    
+    var cardNumber = 1;
+    //var currentCardId = "";
 
-    // first question initiation
-    if( $("#card1") ) {
-        $("#card1").css("display", "block");
+    addQuestions(quiz);
+    timerStart();
+    nextCard(cardNumber, quiz);       
+});
+
+// cards initiation 
+function nextCard(cardNumber, quiz) {
+    var currentCardId = "#card" + cardNumber;
+    var correctAnswer = "";
+    var currentIndex = 0;
+
+    if($(currentCardId)) {        
+
+        $(currentCardId).css("display", "block");
         
-        var correctAnswer = quiz[0].correct;
-        $(".submit").on("click", function(){
-            var chosen;
-            $("input[name='answers0']").each(function() {
+        // checking the submitted answer
+        $(".submit").on("click", function() {
+            var selected = 0;
+            currentIndex = cardNumber-1;                 
+            correctAnswer = quiz[currentIndex].correct;
+            //debugger;
+            // checking all the radio buttons to find the selected one                
+            $("input[name='answers" + currentIndex + "']").each(function() {
                 if(this.checked) {
-                    chosen = this.value;
+                    selected = this.value;
                 }
             });
-            if(chosen == correctAnswer) {
-                // alert("Correct");
-                nextCard();
+            if(selected == correctAnswer) {
+                //alert("Correct");
+                if(cardNumber < quiz.length + 1) {
+                    $(currentCardId).css("display", "none");
+                    cardNumber += 1;
+                    nextCard(cardNumber, quiz);
+                }
+                else {
+                    $(currentCardId).css("display", "none");
+                    alert("End!");
+                    // jumps to the scoring stage
+                }
             }
             else {
                 alert("incorrect");
+                console.log(this);
+                //timeReduce();
             }
         }); // continue the code from here ...
     }
     else 
         console.log("err: empty question bank");
-});
+}
 
-function nextCard() {
-    // 
+function timeReduce() {
+    //
+}
+
+function timerStart() {
+    //
 }
 
 function createQuestionCards() {
@@ -66,7 +96,8 @@ function addAnswers(currentQ, ind, currentQuestionNumber) {
     for(var i = 0; i < currentQ.answers.length; i++) {
         var k = i + 1;
         
-        $("#answers-list" + currentQuestionNumber).append('<li class="list-group-item"><input id="choice' + k + '" type="radio" name="answers'+ ind +'" value="' + k + '"><label for="choice' + k + '">' + currentQ.answers[i] + '</label></li>');
+        $("#answers-list" + currentQuestionNumber).append('<li class="list-group-item"><input id="choice' + k + '" type="radio" name="answers'+ ind +'" value="' + k + '"><label for="choice' + 
+        k + '">' + currentQ.answers[i] + '</label></li>');
     }
 }
 
