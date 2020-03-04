@@ -8,8 +8,7 @@ $("#start-btn").on("click", function() {
 
     // adding questions and answers with no display
     var quiz = createQuestionCards();
-    var cardNumber = 1;
-    //var currentCardId = "";
+    var cardNumber = 1;    
 
     addQuestions(quiz);
     timerStart();
@@ -31,18 +30,19 @@ function nextCard(cardNumber, quiz) {
             var selected = 0;
             currentIndex = cardNumber-1;                 
             correctAnswer = quiz[currentIndex].correct;
-            //debugger;
+
             // checking all the radio buttons to find the selected one                
             $("input[name='answers" + currentIndex + "']").each(function() {
                 if(this.checked) {
-                    selected = this.value;
+                    selected = this.value;                    
                 }
             });
+
             if(selected == correctAnswer) {
-                //alert("Correct");
                 if(cardNumber < quiz.length + 1) {
                     $(currentCardId).css("display", "none");
                     cardNumber += 1;
+                    debugger;
                     nextCard(cardNumber, quiz);
                 }
                 else {
@@ -52,11 +52,12 @@ function nextCard(cardNumber, quiz) {
                 }
             }
             else {
-                alert("incorrect");
-                console.log(this);
+                //alert("incorrect");                
                 //timeReduce();
             }
-        }); // continue the code from here ...
+           
+
+        });
     }
     else 
         console.log("err: empty question bank");
@@ -68,6 +69,15 @@ function timeReduce() {
 
 function timerStart() {
     //
+    var timer = setInterval(function() {
+    var count = parseInt($('#theTarget').html());
+        
+        if (count !== 0) {
+        $('#theTarget').html(count - 1);
+        } else {
+        clearInterval(timer);
+        }
+    }, 1000);
 }
 
 function createQuestionCards() {
@@ -75,7 +85,7 @@ function createQuestionCards() {
     var quiz = [
         {question: "What is HTML?", answers: ["Hyper Text Multiple Language", "Hyper Text Makeup Language", "Hyper Text Markup Language", "Hyper Text Madeup Language"], correct: 2},
         {question: "Question 2 text", answers: ["answer11", "answer12", "answer13", "answer14"], correct: 3},
-        {question: "Question 3 text", answers: ["answer21", "answer22", "answer23", "answer24"], correct: 1}
+        {question: "Question 3 text", answers: ["answer21", "answer22", "answer23", "answer24"], correct: 4}
     ];
     return quiz;    
 }
