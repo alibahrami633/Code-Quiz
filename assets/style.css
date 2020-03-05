@@ -33,3 +33,7 @@ label {
 .top-margin {
     margin-top: 10px;
 }
+
+#theTarget{
+    color: red;
+}

@@ -1,3 +1,6 @@
+var count = 60;
+//var timer;
+
 // hides the start window - starting the test
 $("#start-btn").on("click", function() {
     // goes to the test
@@ -8,11 +11,11 @@ $("#start-btn").on("click", function() {
 
     // adding questions and answers with no display
     var quiz = createQuestionCards();
-    var cardNumber = 1;    
+    var cardNumber = 1;     
 
-    addQuestions(quiz);
-    timerStart();
-    nextCard(cardNumber, quiz);       
+    addQuestions(quiz);    
+    nextCard(cardNumber, quiz);
+    timerStart();       
 });
 
 // cards initiation 
@@ -53,6 +56,7 @@ function nextCard(cardNumber, quiz) {
             else {
                 //alert("incorrect");                
                 //timerStart();
+                count -= 10;
             }
            
 
@@ -61,23 +65,17 @@ function nextCard(cardNumber, quiz) {
     else 
         console.log("err: empty question bank");
 }
-
-function timeReduce() {
-    //
-}
-
+// timer
 function timerStart() {
-    //
-    var timer = setInterval(function() {
-        var count = parseInt($('#theTarget').html());
-        
+    var timer = setInterval(function() {                      
         if (count !== 0) {
-            $('#theTarget').html(count - 1);
-        }
-        else {
+            $("#theTarget").html(count--);          
+        }        
+        else {            
             clearInterval(timer);
         }
-    }, 1000);
+        if (count <= 0)  $("#theTarget").html("Timeout!");
+    }, 1000); 
 }
 
 function createQuestionCards() {
