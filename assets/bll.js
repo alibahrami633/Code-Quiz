@@ -1,17 +1,19 @@
 var count = 60;
-//var timer;
+
+var user1 = {
+    userInit: "",
+    userScore: 0
+}
+var cardNumber = 1;
 
 // hides the start window - starting the test
 $("#start-btn").on("click", function() {
     // goes to the test
     $("#start-window").css("display", "none");
-    $("#questions-window").css("display", "block"); 
-    
-    createQuestionCards();
+    $("#questions-window").css("display", "block");     
 
     // adding questions and answers with no display
-    var quiz = createQuestionCards();
-    var cardNumber = 1;     
+    var quiz = createQuestionCards();    
 
     addQuestions(quiz);    
     nextCard(cardNumber, quiz);
@@ -24,10 +26,9 @@ function nextCard(cardNumber, quiz) {
     var correctAnswer = "";
     var currentIndex = 0;
 
-    if($(currentCardId)) {        
-
+    if($(currentCardId)) {
         $(currentCardId).css("display", "block");
-        
+
         // checking the submitted answer
         $(".submit").on("click", function() {
             var selected = 0;
@@ -43,23 +44,25 @@ function nextCard(cardNumber, quiz) {
 
             if(selected == correctAnswer) {
                 if(cardNumber < quiz.length + 1) {
+                    ++user1.userScore;                                     
                     $(currentCardId).css("display", "none");
+                    $(currentCardId).empty();
                     cardNumber += 1;
                     nextCard(cardNumber, quiz);
                 }
                 else {
-                    $(currentCardId).css("display", "none");
-                    alert("End!");
-                    // jumps to the scoring stage
+                    (currentCardId).css("display", "none");
+                    count = 0;
+                    //$("#theTraget").empty();               
+                    //alert("End!");
+                    // jumps to the scoring stage                    
                 }
+                $("#score").html(" || Your Score:" + user1.userScore);                
             }
             else {
-                //alert("incorrect");                
-                //timerStart();
+                //alert("incorrect");
                 count -= 10;
             }
-           
-
         });
     }
     else 
@@ -67,14 +70,14 @@ function nextCard(cardNumber, quiz) {
 }
 // timer
 function timerStart() {
-    var timer = setInterval(function() {                      
+    var timer = setInterval(function() {        
         if (count !== 0) {
-            $("#theTarget").html(count--);          
-        }        
+            $("#theTarget").html(count--);                     
+        }                
         else {            
-            clearInterval(timer);
-        }
-        if (count <= 0)  $("#theTarget").html("Timeout!");
+            clearInterval(timer);            
+        } 
+              
     }, 1000); 
 }
 
