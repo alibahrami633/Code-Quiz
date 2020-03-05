@@ -42,7 +42,6 @@ function nextCard(cardNumber, quiz) {
                 if(cardNumber < quiz.length + 1) {
                     $(currentCardId).css("display", "none");
                     cardNumber += 1;
-                    debugger;
                     nextCard(cardNumber, quiz);
                 }
                 else {
@@ -53,7 +52,7 @@ function nextCard(cardNumber, quiz) {
             }
             else {
                 //alert("incorrect");                
-                //timeReduce();
+                //timerStart();
             }
            
 
@@ -70,12 +69,13 @@ function timeReduce() {
 function timerStart() {
     //
     var timer = setInterval(function() {
-    var count = parseInt($('#theTarget').html());
+        var count = parseInt($('#theTarget').html());
         
         if (count !== 0) {
-        $('#theTarget').html(count - 1);
-        } else {
-        clearInterval(timer);
+            $('#theTarget').html(count - 1);
+        }
+        else {
+            clearInterval(timer);
         }
     }, 1000);
 }
